@@ -11,23 +11,22 @@
 
     <h1>Notas del alumno</h1>
     <form id="dataForm">
-        <label for="name">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required><br>
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre"><br>
 
-        <label for="name">Apellido:</label><br>
-        <input type="text" id="apellido" name="apellido" required><br>
+        <label for="apellido">Apellido:</label><br>
+        <input type="text" id="apellido" name="apellido"><br>
 
         <label for="nota">Nota:</label><br>
-        <input type="text" id="nota" name="nota" required><br>
+        <input type="text" id="nota" name="nota"><br>
     
 
         <div class="btn-group">
-            <button class="button">Guardar</button>
-            <button class="button">Mostrar</button>
+            <button class="button" onclick=guardarDatos()>Guardar</button>
+            <button class="button" onclick=mostrarAlumnos()>Mostrar</button>
             <button class="button">Promedios</button>
         </div>
 
-        <input type="submit" value="Enviar">
     </form>
 
     <script src="main.js"></script>
