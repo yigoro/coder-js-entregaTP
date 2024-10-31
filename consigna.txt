@@ -1,3 +1,9 @@
+-----------------------------------------------------
+Autor: Sebastian Alejandro Bertolotti
+Fecha de entrega 30/10/2024
+Curso JavaScript
+-----------------------------------------------------
+
 Entrega 1
 Estructura del simulador
 Objetivos generales
