@@ -9,7 +9,7 @@ const guardarDatos = () => {
     const apellido = document.getElementById("apellido").value;
     const dni = parseInt(document.getElementById("dni").value); //parseInt()
     const nota = parseInt(document.getElementById("nota").value);
-    ´
+    
         if (apellido == "" || isNaN(dni) || isNaN(nota)) {
             //Si alguno de los campos viene vacio
             alert("Debe completar todos los campos" + '\n' + "Verifique que DNI y NOTA sea numérico " )
