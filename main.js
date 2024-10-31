@@ -1,4 +1,3 @@
-//comienzo d programa
 const arrayDatos = [];
 
 const guardarDatos = () => {
@@ -8,12 +7,12 @@ const guardarDatos = () => {
     event.preventDefault(); 
 
     const apellido = document.getElementById("apellido").value;
-    const dni = parseInt(document.getElementById("dni").value);
+    const dni = parseInt(document.getElementById("dni").value); //parseInt()
     const nota = parseInt(document.getElementById("nota").value);
 
-        if (apellido == "" || dni == "" || nota == "") {
+        if (apellido == "" || isNaN(dni) || isNaN(nota)) {
             //Si alguno de los campos viene vacio
-            alert("Debe completar todos los campos")
+            alert("Debe completar todos los campos" + '\n' + "Verifique que DNI y NOTA sea numérico " )
         } else {
             arrayDatos.push({apellido, dni, nota});
             console.log("Array actualizado: ", arrayDatos);
@@ -23,6 +22,7 @@ const guardarDatos = () => {
             document.getElementById("nota").value = "";
 
         }
+        document.getElementById("apellido").focus();
 
 }
 
@@ -52,7 +52,14 @@ const mostrarAlumnos = () => {
     event.preventDefault();
     console.log("mostrando alumnos")
 
-
+    if (arrayDatos.length == 0) {
+        alert("No hay alumnos cargados")
+    } else {
+        for (let i = 0; i < arrayDatos.length; i++){
+            totalAlumnos = totalAlumnos + '\n' + arrayDatos[i].apellido + " - " + arrayDatos[i].nota
+        }
+        alert("listado de alumnos" + '\n' + totalAlumnos)
+    }
 
 }
 
@@ -70,10 +77,8 @@ const eliminarAlumno = () => {
 
         dni = parseInt(prompt("Ingrese el Dni del alumno que desea dar de baja"))
         console.log(dni + " - " + typeof(dni) + " " + arrayDatos.includes(dni))
-        console.log(arrayDatos.indexOf(dni))
 
             for (let i = 0; i < arrayDatos.length && baja == false; i++){
-                console.log(arrayDatos[i].dni)
                 if (arrayDatos[i].dni == dni) {
                     alert("Se dá de baja al alumno " + arrayDatos[i].apellido)
                     arrayDatos.splice(i,1)
