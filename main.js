@@ -1,3 +1,4 @@
+//comienzo d programa
 const arrayDatos = [];
 
 const guardarDatos = () => {
