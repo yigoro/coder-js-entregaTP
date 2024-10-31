@@ -6,19 +6,19 @@ const guardarDatos = () => {
     //tengo que agregar esto porque me precarga la pagina y pierdo los datos del array
     event.preventDefault(); 
 
-    const nombre = document.getElementById("nombre").value;
     const apellido = document.getElementById("apellido").value;
+    const dni = parseInt(document.getElementById("dni").value);
     const nota = parseInt(document.getElementById("nota").value);
 
-        if (nombre == "" || apellido == "" || nota == "") {
+        if (apellido == "" || dni == "" || nota == "") {
             //Si alguno de los campos viene vacio
             alert("Debe completar todos los campos")
         } else {
-            arrayDatos.push({nombre, apellido, nota});
+            arrayDatos.push({apellido, dni, nota});
             console.log("Array actualizado: ", arrayDatos);
             
-            document.getElementById("nombre").value = "";
             document.getElementById("apellido").value = "";
+            document.getElementById("dni").value = "";
             document.getElementById("nota").value = "";
 
         }
@@ -31,13 +31,17 @@ const mostrarPromedios = () => {
     let suma = 0;
 
     event.preventDefault();
-    for(let i = 0; i < arrayDatos.length; i++) {
-        console.log(arrayDatos[i].nota + " - " + typeof(arrayDatos[i].nota))
-        suma += arrayDatos[i].nota
-    }
-    promedio = parseFloat(suma / arrayDatos.length)
-    alert("El promedio de notas de todos los alumnos es " + promedio)
 
+    if (arrayDatos.length == 0) {
+        alert("No no hay alumnos cargados")
+    } else {
+        for(let i = 0; i < arrayDatos.length; i++) {
+            console.log(arrayDatos[i].nota + " - " + typeof(arrayDatos[i].nota))
+            suma += arrayDatos[i].nota
+        }
+        promedio = parseFloat(suma / arrayDatos.length)
+        alert("El promedio de notas de todos los alumnos es " + promedio)
+    }
 }
 
 const mostrarAlumnos = () => {
@@ -47,12 +51,40 @@ const mostrarAlumnos = () => {
     event.preventDefault();
     console.log("mostrando alumnos")
 
+
+
 }
 
-const eliminarAlumno = (dni) => {
-    //Elimina el alumno desde el parámetro dni ingresado
-    
+const eliminarAlumno = () => {
+    //Elimina el alumno
+    let dni = 0;
+    let baja = false;
+
     event.preventDefault();
     console.log("Eliminando alumno")
+
+    if (arrayDatos.length == 0) {
+        alert("No hay alumnos cargados")
+    } else {
+
+        dni = parseInt(prompt("Ingrese el Dni del alumno que desea dar de baja"))
+        console.log(dni + " - " + typeof(dni) + " " + arrayDatos.includes(dni))
+        console.log(arrayDatos.indexOf(dni))
+
+            for (let i = 0; i < arrayDatos.length && baja == false; i++){
+                console.log(arrayDatos[i].dni)
+                if (arrayDatos[i].dni == dni) {
+                    alert("Se dá de baja al alumno " + arrayDatos[i].apellido)
+                    arrayDatos.splice(i,1)
+                    baja = true
+                } 
+            }
+
+            //Si el dni ingresado no se encuentra en el array, entonces se informa
+            if (baja == false) {
+                alert("No se ha encontrado el alumno " + dni + " para dar de baja")
+            }
+
+        }
 
 }
